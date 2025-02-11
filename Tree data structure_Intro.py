@@ -150,13 +150,33 @@ class Tree:
       self.root=node#setting node in root
       return#it is used instead of else. if the condition is true then it will return the value and come out of the function.
     
+    ParentNode=self.findNode(parentdata,self.root)
+    if not ParentNode:
+      print("Parent Node not found")
+      return
+    
+    ParentNode.children.append(node)
+    
+  # we need to find first where the node is present and then we need to add the child to that node. 
+  def findNode(self,data,node):
+      if node.data==data:
+        return node##check base node
+      
+      for child in node.children:#then check chidren
+        nodefound=self.findNode(data,child)
+        if nodefound:#nodefound is not None
+          return nodefound
+      return None  
 
 tree=Tree()
 tree.add("3")
 tree.add("5","3")#in parentdata we are giving 3 so 5 is child of 3
+tree.add("6","3")
+tree.add("7","3")
+tree.add("8","5")
 
-#continuity will be there.
-# we need to find first where the node is present and then we need to add the child to that node.
+
+
 
 
 
